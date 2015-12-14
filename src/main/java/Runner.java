@@ -7,7 +7,7 @@ public class Runner {
 
         Currency usd = new Currency("American Dollar", "USD", "840", 1);
         Currency eur = new Currency("Euro", "EUR", "978", 1.09);
-        Currency hrn = new Currency("Hrivna", "UAH", "980", 25);
+        Currency hrn = new Currency("Hrivna", "UAH", "980", 0.04);
 
         Client client1 = new Client("Vasiliy Pupkin", "KE562356");
         Client client2 = new Client("Petr Vasechkin", "KC223322");
@@ -25,9 +25,11 @@ public class Runner {
         client1.fill(account2client1, 200);
         client3.fill(account2client3, 300);
 
+        client1.withdraw(account1client1, 50);
         client2.withdraw(account2client2, 100);
 
         client1.send(account2client1, account2client3, 100);
+        client3.send(account2client3, account1client3, 20);
 
         client1.accountsStatement();
         client2.accountsStatement();

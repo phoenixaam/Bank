@@ -38,8 +38,8 @@ public class Bank {
 
 
     static Account generateNewAccount(Bank bank, Currency currency, AccountType type) {
-        // 25       285302    000002563
-        // acc.type bank.code acc.number(short)
+        // 25        285302     000002563
+        // acc.type  bank.code  acc.number(short)
         int newNumber = getLastAccountNumber(bank) + 1;
         String newNumberStr = String.format("%09d", newNumber);
         String strNumber = type.getCode() + bank.getCode() + newNumberStr;

@@ -34,4 +34,11 @@ class Currency {
     public void setRate(double rate) {
         this.rate = rate;
     }
+
+    public static double convertTo(Currency from, Currency to, double sum) {
+        if (to.getRate() != 0) {
+            return sum * from.getRate() / to.getRate();
+        }
+        return 0;
+    }
 }
