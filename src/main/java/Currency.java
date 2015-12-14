@@ -48,8 +48,6 @@ class Currency {
             koefStr = koefStr + "0";
         }
         int koef = Integer.parseInt(koefStr);
-        System.out.println(koefStr);
-        System.out.println(koef);
         return ((double) Math.round(value * koef)) / koef;
     }
 }
