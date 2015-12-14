@@ -37,8 +37,19 @@ class Currency {
 
     public static double convertTo(Currency from, Currency to, double sum) {
         if (to.getRate() != 0) {
-            return sum * from.getRate() / to.getRate();
+            return round((sum * from.getRate() / to.getRate()), 2);
         }
         return 0;
+    }
+
+    public static double round(double value, int amount) {
+        String koefStr = "1";
+        for (int i = 0; i < amount; i++) {
+            koefStr = koefStr + "0";
+        }
+        int koef = Integer.parseInt(koefStr);
+        System.out.println(koefStr);
+        System.out.println(koef);
+        return ((double) Math.round(value * koef)) / koef;
     }
 }

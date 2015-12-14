@@ -21,15 +21,18 @@ public class Runner {
         Account account1client3 = client3.openAccount(bankPivdenny, hrn, AccountType.CURRENT);
         Account account2client3 = client3.openAccount(bankPrivat, eur, AccountType.DEPOSIT);
 
-        client1.fill(account1client1, 100);
+        client1.fill(account1client1, 100.295);
         client1.fill(account2client1, 200);
         client3.fill(account2client3, 300);
 
-        client1.withdraw(account1client1, 50);
-        client2.withdraw(account2client2, 100);
-
         client1.send(account2client1, account2client3, 100);
         client3.send(account2client3, account1client3, 20);
+        client3.send(account2client3, account1client2, 35);
+        client2.send(account1client2, account3client1, 10);
+
+        client1.withdraw(account1client1, 50);
+        client2.withdraw(account2client2, 100);
+        client3.withdraw(account2client3, 25);
 
         client1.accountsStatement();
         client2.accountsStatement();

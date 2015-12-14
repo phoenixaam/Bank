@@ -21,8 +21,8 @@ public class Client {
 
     public boolean fill(Account account, double sum) {
         if (account != null) {
-            account.setSum(account.getSum() + sum);
-            System.out.println(name + " successfully filled up the account " + account.getNumber() + ", sum: " + sum +
+            account.setSum(account.getSum() + Currency.round(sum, 2));
+            System.out.println(name + " successfully filled up the account " + account.getNumber() + ", sum: " + Currency.round(sum, 2) +
                     " " + account.getCurrency().getCode() + ".");
             return true;
         } else {
@@ -38,8 +38,8 @@ public class Client {
             System.out.println(name + ", you don't have enough money on the account " + account.getNumber() + "!");
             return false;
         } else {
-            account.setSum(account.getSum() - sum);
-            System.out.println(name + " successfully withdrew sum: " + sum + " " + account.getCurrency().getCode() +
+            account.setSum(account.getSum() - Currency.round(sum, 2));
+            System.out.println(name + " successfully withdrew sum: " + Currency.round(sum, 2) + " " + account.getCurrency().getCode() +
                     " from the account " + account.getNumber() + ".");
             return true;
         }
@@ -61,9 +61,9 @@ public class Client {
         } else {
             newSum = sum;
         }
-        from.setSum(from.getSum() - sum);
-        to.setSum(to.getSum() + newSum);
-        System.out.println(name + " successfully sent sum: " + sum + " " + from.getCurrency().getCode() +
+        from.setSum(from.getSum() - Currency.round(sum, 2));
+        to.setSum(to.getSum() + Currency.round(newSum, 2));
+        System.out.println(name + " successfully sent sum: " + Currency.round(sum, 2) + " " + from.getCurrency().getCode() +
                 " from the account " + from.getNumber() + " to the account " + to.getNumber() + ".");
         return true;
     }
