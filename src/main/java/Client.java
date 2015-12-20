@@ -12,10 +12,10 @@ public class Client {
         this.accounts = new ArrayList<Account>();
     }
 
-    public Account openAccount(Bank bank, Currency currency, AccountType type) {
-        Account account = Bank.generateNewAccount(bank, currency, type);
+    public Account openAccount(Bank bank, Currency currency, AccountType accountType) {
+        Client client = this;
+        Account account = bank.generateNewAccount(accountType, currency, client);
         accounts.add(account);
-        bank.addClient(this);
         return account;
     }
 

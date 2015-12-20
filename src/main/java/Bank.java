@@ -36,28 +36,28 @@ public class Bank {
         return clients.remove(client);
     }
 
-
-    static Account generateNewAccount(Bank bank, Currency currency, AccountType type) {
-        // 25        285302     000002563
-        // acc.type  bank.code  acc.number(short)
-        int newNumber = getLastAccountNumber(bank) + 1;
-        String newNumberStr = String.format("%09d", newNumber);
-        String strNumber = type.getCode() + bank.getCode() + newNumberStr;
-        Account account = new Account(strNumber);
-        account.setBank(bank);
-        account.setType(type);
-        account.setCurrency(currency);
-        bank.accounts.add(account);
-        return account;
-    }
-
-    private static int getLastAccountNumber(Bank bank) {
+    private int getLastAccountNumber() {
         int lastNumberShort = 0;
-        if (bank.accounts.size() > 0) {
-            String lastNumberFull = bank.accounts.peekLast().getNumber();
+        if (accounts.size() > 0) {
+            String lastNumberFull = accounts.peekLast().getNumber();
             String lastNumberShortStr = lastNumberFull.substring(8);
             lastNumberShort = Integer.parseInt(lastNumberShortStr);
         }
         return lastNumberShort;
+    }
+
+    public Account generateNewAccount(AccountType accountType, Currency currency, Client client) {
+        // 25        285302     000002563
+        // acc.type  bank.code  acc.number(short)
+        int newNumber = getLastAccountNumber() + 1;
+        String newNumberStr = String.format("%09d", newNumber);
+        String strNumber = accountType.getCode() + getCode() + newNumberStr;
+        Account account = new Account(strNumber);
+        account.setBank(this);
+        account.setType(accountType);
+        account.setCurrency(currency);
+        this.accounts.add(account);
+        this.addClient(client);
+        return account;
     }
 }
